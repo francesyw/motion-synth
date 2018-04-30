@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import { NavLink } from 'react-router-dom';
-// import { connect } from 'react-redux';
 
 class Mobile extends Component {
   constructor(props) {
@@ -13,10 +12,12 @@ class Mobile extends Component {
         az: 0
       },
       isConnected: false,
+      isOn: false
     }
     this.socket = io(window.location.origin);
-    this.handleClick = this.handleClick.bind(this);
-    this.counter = 0;
+    this.handleTouch = this.handleTouch.bind(this);
+    this.handleRelease = this.handleRelease.bind(this);
+    // this.counter = 0;
   }
 
   componentDidMount() {
@@ -43,28 +44,29 @@ class Mobile extends Component {
     }
       // console.log('direction: ', this.state.direction, ' | accl: ', acceleration.az);
     // }
-    this.counter++;
-    if (this.counter % 3 === 0) {
-      // console.log(this.counter);
-      this.socket.emit('data', this.state.acceleration);
-    }
+    // this.counter++;
+    // if (this.counter % 3 === 0) {
+      console.log(this.state.isOn);
+    if (this.state.isOn) this.socket.emit('data', this.state.acceleration);
+    // }
     this.setState({ acceleration });
     // dist: this.state.dist + (accl * interval * interval * 0.5) (current position)
   }
 
-  handleClick = event => {
-    this.socket.emit('touch', 'pressed');
+  handleTouch = event => {
+    this.setState({ isOn: true });
+    // this.socket.emit('touch', 'pressed');
+  }
+
+  handleRelease = event => {
+    this.setState({ isOn: false });
   }
 
   render() {
     let { ax, ay, az } = this.state.acceleration;
     return (
       <React.Fragment>
-        <h1>Controller Acceleration</h1>
-        <p>ax: {ax}</p>
-        <p>ay: {ay}</p>
-        <p>az: {az}</p>
-        <button style={{ fontSize: '10em' }} onTouchStart={this.handleClick} className="control-btn">Touch</button>
+        <button style={{ fontSize: '9em' }} onTouchStart={this.handleTouch} onTouchEnd={this.handleRelease} className="control-btn">Press</button>
         <NavLink to="/">Home</NavLink>
       </React.Fragment>
     );

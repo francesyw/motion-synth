@@ -34,13 +34,13 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <header>
-        <h1>Home</h1>
-        { this.state.isSelfConnected ?
+        <h1>Motion Synth</h1>
+        {/* this.state.isSelfConnected ?
           <p>Connected to the server.</p> :
-          <p>Not connected to the serve</p> }
-        { this.state.hasController ?
+          <p>Not connected to the serve</p> */}
+        {/* this.state.hasController ?
           <p>A controller is connected!</p> :
-          <p>No controllers...</p>}
+          <p>No controllers...</p> */}
         </header>
         <Content data={this.state.acceleration} />
       </React.Fragment>
@@ -64,7 +64,6 @@ function disconnectApp(cb) {
 
 function fetchData(cb) {
   socket.on('accl-to-client', data => {
-    // console.log('data---', data)
     cb(data);
   });
 }

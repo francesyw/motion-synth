@@ -1,30 +1,26 @@
 export default function (p5) {
   let props = {ax: 0, ay: 0, az: 0};
   let ampX = [];
-  // let ampY = [];
   let ampZ = [];
   let deg = 0.02;
-  // let count = 0;
+  let canvasSize = 600;
+  let step = 3;
 
   p5.pushProps = function (_props) {
 
-    props.ax = _props.ax * 6 || 0;
-    // props.ay = _props.ay * 5 || 0;
-    props.az = _props.az * 5 || 0;
-    if (ampZ.length > window.innerWidth / 5) {
+    props.ax = _props.ax * 2 || 0;
+    props.az = _props.az * 2 || 0;
+    if (ampZ.length > canvasSize / step) {
       ampZ.shift();
-      // ampY.shift();
-    }
-    if (ampX.length > window.innerHeight / 5) {
       ampX.shift();
     }
+
     ampX.push(props.ax);
-    // ampY.push(props.ay);
     ampZ.push(props.az);
   };
 
   p5.setup = function() {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight, p5.WEBGL);
+    p5.createCanvas(canvasSize, canvasSize, p5.WEBGL);
     p5.rectMode(p5.CENTER);
   };
 
@@ -46,7 +42,11 @@ export default function (p5) {
     p5.stroke('limegreen');
     for (let i = 0; i < p5.width + 100; i++) {
       p5.rotateX(deg);
-      ampZ[i] && p5.line(i * 5, ampZ[i], (i + 1) * 5, ampZ[i + 1]);
+      if (ampZ[i]) {
+        p5.line(i * step, ampZ[i], (i + 1) * step, ampZ[i + 1]);
+      } else {
+        p5.line(i * step, 0, (i + 1) * step, 0);
+      }
     }
     p5.pop();
 
@@ -58,11 +58,15 @@ export default function (p5) {
       p5.noStroke();
       p5.rotateX(deg);
       p5.push();
-      p5.translate(j * 5, ampX[j], 0);
-      ampX[j] && p5.box(10);
+      if (ampX[j]) {
+        p5.translate(j * step, ampX[j], 0);
+      } else {
+        p5.translate(j * step, 0, 0);
+      }
+      p5.box(5);
       p5.pop();
       p5.stroke('blue');
-      ampX[j] && p5.line(j * 5, ampX[j], (j + 1) * 5, ampX[j + 1]);
+      ampX[j] && p5.line(j * step, ampX[j], (j + 1) * step, ampX[j + 1]);
     }
     p5.pop();
 

@@ -2,8 +2,11 @@ body {
   margin: 0;
 }
 
-header {
-  position: absolute;
+h1 {
+  color: #3259f9;
+  text-align: center;
+  width: 100%;
+  margin: 1em auto 0em;
 }
 
 .control-btn {
@@ -14,4 +17,26 @@ header {
   -ms-user-select:none;
   user-select:none;
   cursor:'pointer';
+}
+
+.container {
+  width: 100%;
+  margin: 1em auto;
+  text-align: center;
+}
+
+#synthui {
+  margin: 0em auto 2em;
+}
+
+button {
+  margin: 0em 1em 2em;
+  border: 0;
+  background-color: #3258f9;
+  color: white;
+  padding: 0.7em 1.5em;
+}
+
+* {
+  font-family: 'Helvetica';
 }

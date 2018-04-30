@@ -13,8 +13,6 @@ const server = app.listen(1337, function () {
 
 const io = socketio(server);
 
-// const inMemoryDrawHistory = [];
-
 io.on('connection', socket => {
   console.log(`Welcome new socket: ${socket.id}`);
 
@@ -36,15 +34,6 @@ io.on('connection', socket => {
   socket.on('touch', action => {
     console.log(action);
   })
-  // if(inMemoryDrawHistory.length) {
-  //   console.log("gonna load", inMemoryDrawHistory)
-  //   socket.emit('load', inMemoryDrawHistory)
-  // }
-
-  // socket.on('draw', (start, end, color) => {
-  //   inMemoryDrawHistory.push({start, end, color});
-  //   socket.broadcast.emit('draw', start, end, color)
-  // })
 
   socket.on('disconnect', () => {
     console.log(`Goodbye old friend: ${socket.id}`);
