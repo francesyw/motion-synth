@@ -4,11 +4,12 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const app = express();
-const socketio = require('socket.io')
+const socketio = require('socket.io');
+const PORT = process.env.PORT || 1337;
 
 // app.listen() returns an http.Server object
-const server = app.listen(1337, function () {
-    console.log(`Listening on http://localhost:${server.address().port}`);
+const server = app.listen(PORT, function () {
+    // console.log(`Listening on http://localhost:${server.address().port}`);
 });
 
 const io = socketio(server);
