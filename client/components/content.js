@@ -58,6 +58,8 @@ export default class Content extends Component {
         <button onClick={this.handleStop}>STOP</button>
         <div id="synthui"></div>
         <div id="p5-container" />
+        <p id="zaxis">z-axis</p>
+        <p id="xaxis">x-axis</p>
       </div>
     );
   }

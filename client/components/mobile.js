@@ -67,7 +67,7 @@ class Mobile extends Component {
     return (
       <React.Fragment>
         <button style={{ fontSize: '9em' }} onTouchStart={this.handleTouch} onTouchEnd={this.handleRelease} className="control-btn">Press</button>
-        <NavLink to="/">Home</NavLink>
+        {/* <NavLink to="/">Home</NavLink> */}
       </React.Fragment>
     );
   }

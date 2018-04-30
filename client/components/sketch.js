@@ -39,7 +39,7 @@ export default function (p5) {
 
     p5.push();
     p5.translate(-p5.width / 2, 0, 0);
-    p5.stroke('limegreen');
+    p5.stroke(73, 239, 99);
     for (let i = 0; i < p5.width + 100; i++) {
       p5.rotateX(deg);
       if (ampZ[i]) {

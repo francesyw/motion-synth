@@ -1,3 +1,7 @@
+* {
+  font-family: 'Helvetica';
+}
+
 body {
   margin: 0;
 }
@@ -37,6 +41,28 @@ button {
   padding: 0.7em 1.5em;
 }
 
-* {
-  font-family: 'Helvetica';
+.control-btn {
+  margin: 2em 0 0 0.5em;
+}
+
+canvas {
+  position: relative;
+}
+
+#zaxis {
+  position: absolute;
+  bottom: 0;
+  left: 27%;
+  color: #49ef63;
+  font-size: 1.3em;
+  background-color: white;
+}
+
+#xaxis {
+  position: absolute;
+  top: 350px;
+  left: 39%;
+  color: #3258f9;
+  font-size: 1.3em;
+  background-color: white
 }
