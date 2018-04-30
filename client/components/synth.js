@@ -9,12 +9,14 @@ var phaser = new Tone.Phaser({
   baseFrequency: 200
 });
 
+var vol = new Tone.Volume(+3);
+
 var fmod = function (fx1, fx2) {
   return new Tone.PolySynth(6, Tone.SimpleAM, {
     oscillator: {
       partials: [0, 2, 3, 4],
     }
-  }).chain(fx1, fx2, Tone.Master);
+  }).chain(fx1, fx2, vol, Tone.Master);
 }
 
 var sequencer = function(nx, synth) {
