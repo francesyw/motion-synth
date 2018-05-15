@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import Content from './content';
-// import { connect } from 'react-redux';
 
 const socket = io(window.location.origin);
 
